@@ -1,0 +1,95 @@
+<html>
+	<font size="8" color="green">Final test lab</font><br><br>
+	Number of rows: <input type="text" id="t1" /><br><br>
+	Number of cols: <input type="text" id="t2" /><br><br>
+	
+	<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+	
+	<button id="b2" onclick="addColumn()">Add Column</button>
+	
+	<button id="b3" onclick="addRow()">Add Row</button>
+		
+	<script language="javascript">
+		let tableElement;
+
+		//Your code goes here
+		let generateTableButtonEl = document.getElementById("b1");
+		let addColumnButtonEl = document.getElementById("b2");
+		let addRowButtonEl = document.getElementById("b3");
+		function validateinput()
+		{
+			if(isNaN(t1.value)||parseInt(document.getElementById("t1").value)<=0||t1.value==="")
+			{
+				alert("Please enter a valid value for rows");
+			}
+
+			if(isNaN(t2.value)||parseInt(document.getElementById("t1").value)<=0||t2.value==="")
+			{
+				alert("Please enter a valid value for cols");
+			}
+		}
+
+
+		b1.onclick=function(){
+			validateinput();
+			let rowsEl = parseInt(document.getElementById("t1").value);
+			let colsEl = parseInt(document.getElementById("t2").value);
+			//console.log(rowsEl);
+			//console.log(typeof(rowsEl));
+			tableElement = document.createElement("table");
+			document.body.appendChild(tableElement);
+			for(let i=0;i<rowsEl;i++){
+				let tablerow = document.createElement("tr");
+				tableElement.appendChild(tablerow);
+				tableElement.style.border = "2px solid black";
+				for(let j=0;j<colsEl;j++)
+				{
+					let tablecol = document.createElement("td");
+					tablecol.textContent = `0,0`;
+					tablecol.style.border = "2px solid black";
+					tablerow.appendChild(tablecol);
+				}
+			}
+
+			
+			//console.log(tableElement);
+
+		}
+		
+		b2.onclick = function()
+		{
+			//console.log(tableElement);
+			let tablerows = document.getElementsByTagName("tr");
+			console.log(tablerows);
+			for(let i =0;i<tablerows.length;i++)
+			{
+				let col = document.createElement("td");
+				col.textContent =`0,0`;
+				col.style.border = "2px solid black";
+				tablerows[i].appendChild(col);
+				
+			}
+			t2.value = parseInt(t2.value) +1;
+			//colsEl +=1;
+	
+		}
+
+		b3.onclick = function()
+		{
+			let colsEl = parseInt(document.getElementById("t2").value);
+			let tablerow = document.createElement("tr");
+			tableElement.appendChild(tablerow);
+			for(let j=0;j<colsEl;j++)
+				{
+					let tablecol = document.createElement("td");
+					tablecol.textContent = `0,0`;
+					tablecol.style.border = "2px solid black";
+					tablerow.appendChild(tablecol);
+				}
+				//t1.value = parseInt(t1.value) +1;
+		}
+
+	
+	</script>
+	
+</html>
